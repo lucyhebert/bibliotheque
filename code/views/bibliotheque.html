@@ -1,0 +1,23 @@
+doctype html
+html(lang="en")
+
+head
+title Bibliothèque
+
+body
+
+    h1 Liste des livres
+
+    table
+        each livre in liste_livres
+            tr
+                td
+                    input(type="text" value=livre.isbn readonly)
+                td
+                    input(type="text" value=livre.titre readonly)
+                td
+                    input(type="text" value=livre.auteurs readonly)
+                td
+                    input(type="text" value=livre.date_achat readonly)
+                td
+                    input(type="text" value=livre.catégories readonly)
