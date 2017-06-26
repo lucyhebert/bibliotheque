@@ -16,8 +16,14 @@ body
                 td
                     input(type="text" value=livre.titre readonly)
                 td
-                    input(type="text" value=livre.auteurs readonly)
+                    textarea(readonly rows=livre.auteurs.length)
+                        each auteur in livre.auteurs
+                            | #{auteur.nom} #{auteur.prenom}
+                            |
                 td
                     input(type="text" value=livre.date_achat readonly)
                 td
-                    input(type="text" value=livre.catégories readonly)
+                    textarea(readonly rows=livre.catégories.length)
+                        each categorie in livre.catégories
+                            | #{categorie}
+                            |
