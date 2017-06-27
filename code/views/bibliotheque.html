@@ -53,3 +53,6 @@ body
                             each categorie in livre.catégories
                                 | #{categorie}
                                 |
+                    td
+                        form(method='POST', action="/bibliotheque/delete/"+livre._id)
+                            input(type="submit", value="Supprimer")

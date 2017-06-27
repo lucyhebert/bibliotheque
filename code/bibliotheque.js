@@ -38,6 +38,15 @@ app.post('/bibliotheque/new', function(req, res) {
 	res.redirect('/bibliotheque');
 });
 
+//Supprime un livre
+app.post('/bibliotheque/delete/:id', function(req, res) {
+	var id = new mongodb.ObjectId(req.params.id);
+
+	app.db.collection('bibliotheque.livres').remove({_id : id});
+
+	res.redirect('/bibliotheque');
+});
+
 // Connexion au serveur avec la méthode connect
 mongoClient.connect(url, function (err, db) {
 	app.db = db;
