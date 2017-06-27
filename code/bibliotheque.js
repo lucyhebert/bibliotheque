@@ -24,6 +24,20 @@ app.get('/bibliotheque', function(req, res) {
 	});
 });
 
+//Ajoute un livre
+app.post('/bibliotheque/new', function(req, res) {
+	var isbn = req.body.isbn;
+	var titre = req.body.titre;
+	var auteurs = req.body.auteurs.split(",");
+	var date_achat = req.body.date_achat;
+	var catégories = req.body.catégories.split(",");
+
+	app.db.collection('bibliotheque.livres').insert({'isbn' : isbn, 'titre' : titre
+	, 'auteurs' : auteurs, 'date_achat' : date_achat, 'catégories' : catégories});
+
+	res.redirect('/bibliotheque');
+});
+
 // Connexion au serveur avec la méthode connect
 mongoClient.connect(url, function (err, db) {
 	app.db = db;
