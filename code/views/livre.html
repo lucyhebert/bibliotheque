@@ -22,22 +22,25 @@ body
             th Nom auteur
             th Date d'achat
             th Catégories
-            each livre in liste_livres
                 tr
                     td
-                        input(type="text" value=livre.isbn readonly)
+                        input(type="text" value=liste_livres[0].isbn readonly)
                     td
-                        input(type="text" value=livre.titre readonly)
+                        input(type="text" value=liste_livres[0].titre readonly)
                     td
-                        textarea(readonly rows=livre.auteurs.length)
-                            each auteur in livre.auteurs
+                        textarea(readonly rows=liste_livres[0].auteurs.length)
+                            each auteur in liste_livres[0].auteurs
                                 | #{auteur}
                                 |
                     td
                         // TODO : format date
-                        input(type="text" value=livre.date_achat readonly)
+                        input(type="text" value=liste_livres[0].date_achat readonly)
                     td
-                        textarea(readonly rows=livre.catégories.length)
-                            each categorie in livre.catégories
+                        textarea(readonly rows=liste_livres[0].catégories.length)
+                            each categorie in liste_livres[0].catégories
                                 | #{categorie}
                                 |
+                tr
+                    td
+                        form(method='POST', action="/bibliotheque/"+liste_livres[0]._id+"/edit")
+                            input(type="submit", value="Emprunter")

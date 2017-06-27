@@ -55,6 +55,27 @@ app.get('/bibliotheque/:id', function(req, res) {
 	});
 });
 
+//Renvoie vers le formulaire de prêt d'un livre
+app.post('/bibliotheque/:id/edit', function(req, res) {
+	var id = new mongodb.ObjectId(req.params.id);
+
+	app.db.collection('bibliotheque.livres').find({_id : id}).toArray(function(err, livres) {
+    		res.render("edit", {'liste_livres' : livres});
+    	});
+});
+
+//Prête un livre
+app.post('/bibliotheque/:id', function(req, res) {
+	var livre = new mongodb.ObjectId(req.params.id);
+	var emprunteur = req.body.emprunteur;
+	var date_pret = req.body.date_pret;
+
+	app.db.collection('bibliotheque.prets').insert({'livre' : livre, 'emprunteur' : emprunteur
+	, 'date_pret' : date_pret});
+
+    res.redirect('/bibliotheque');
+});
+
 // Connexion au serveur avec la méthode connect
 mongoClient.connect(url, function (err, db) {
 	app.db = db;

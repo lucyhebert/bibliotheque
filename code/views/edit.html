@@ -1,0 +1,30 @@
+doctype html
+html(lang="en")
+
+head
+    title Livre
+
+    style
+        include css/datepicker.css
+        include css/normalize.css
+
+    script(src="https://code.jquery.com/jquery-1.12.4.js")
+    script(src="https://code.jquery.com/ui/1.12.1/jquery-ui.js")
+    script
+        include ../datepicker.js
+
+body
+    h1 Prêt d'un livre
+    h2 #{liste_livres[0].titre}
+    h3 de #{liste_livres[0].auteurs}
+    div
+        | Date de prêt :
+        input(type="text", name="date_pret", placeholder="Date de prêt", id="datepicker")
+    br
+    div
+        | Nom de l'emprunteur :
+        input(type="text", name="emprunteur", placeholder="Nom de l'emprunteur")
+    br
+    div
+        form(method='POST', action="/bibliotheque/"+liste_livres[0]._id)
+            input(type="submit", value="Emprunter")
