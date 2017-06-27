@@ -18,9 +18,7 @@ var url = 'mongodb://localhost:27017/bibliotheque';
 //Affiche les livres
 app.get('/bibliotheque', function(req, res) {
 	app.db.collection('bibliotheque.livres').find({}).toArray(function(err, livres) {
-		res.render("bibliotheque", {
-			'liste_livres' : livres
-		});
+		res.render("bibliotheque", {'liste_livres' : livres});
 	});
 });
 
@@ -45,6 +43,16 @@ app.post('/bibliotheque/delete/:id', function(req, res) {
 	app.db.collection('bibliotheque.livres').remove({_id : id});
 
 	res.redirect('/bibliotheque');
+});
+
+//Affiche un livre
+// TODO : à améliorer
+app.get('/bibliotheque/:id', function(req, res) {
+	var id = new mongodb.ObjectId(req.params.id);
+
+	app.db.collection('bibliotheque.livres').find({_id : id}).toArray(function(err, livres) {
+		res.render("livre", {'liste_livres' : livres});
+	});
 });
 
 // Connexion au serveur avec la méthode connect
