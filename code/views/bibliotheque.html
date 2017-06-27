@@ -2,7 +2,16 @@ doctype html
 html(lang="en")
 
 head
-title Bibliothèque
+    title Bibliothèque
+
+    style
+        include css/datepicker.css
+        include css/normalize.css
+
+    script(src="https://code.jquery.com/jquery-1.12.4.js")
+    script(src="https://code.jquery.com/ui/1.12.1/jquery-ui.js")
+    script
+        include ../datepicker.js
 
 body
 
@@ -37,6 +46,7 @@ body
                                 | #{auteur}
                                 |
                     td
+                        // TODO : format date
                         input(type="text" value=livre.date_achat readonly)
                     td
                         textarea(readonly rows=livre.catégories.length)
