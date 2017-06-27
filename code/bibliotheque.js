@@ -73,6 +73,8 @@ app.post('/bibliotheque/:id', function(req, res) {
 	app.db.collection('bibliotheque.prets').insert({'livre' : livre, 'emprunteur' : emprunteur
 	, 'date_pret' : date_pret});
 
+	app.db.collection('bibliotheque.livres').update({'_id' : livre}, {$set : {'emprunt' : false}});
+
     res.redirect('/bibliotheque');
 });
 

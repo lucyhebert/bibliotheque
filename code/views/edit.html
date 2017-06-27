@@ -17,14 +17,14 @@ body
     h1 Prêt d'un livre
     h2 #{liste_livres[0].titre}
     h3 de #{liste_livres[0].auteurs}
-    div
-        | Date de prêt :
-        input(type="text", name="date_pret", placeholder="Date de prêt", id="datepicker")
-    br
-    div
-        | Nom de l'emprunteur :
-        input(type="text", name="emprunteur", placeholder="Nom de l'emprunteur")
-    br
-    div
-        form(method='POST', action="/bibliotheque/"+liste_livres[0]._id)
+    form(method='POST', action="/bibliotheque/"+liste_livres[0]._id)
+        div
+            | Date de prêt :
+            input(type="text", name="date_pret", placeholder="Date de prêt", id="datepicker")
+        br
+        div
+            | Nom de l'emprunteur :
+            input(type="text", name="emprunteur", placeholder="Nom de l'emprunteur")
+        br
+        div
             input(type="submit", value="Emprunter")
