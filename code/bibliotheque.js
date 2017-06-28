@@ -64,7 +64,7 @@ app.post('/bibliotheque/:id/edit', function(req, res) {
     	});
 });
 
-//Prête un livre
+//Génère un prêt
 app.post('/bibliotheque/:id', function(req, res) {
 	var livre = new mongodb.ObjectId(req.params.id);
 	var emprunteur = req.body.emprunteur;
@@ -73,9 +73,20 @@ app.post('/bibliotheque/:id', function(req, res) {
 	app.db.collection('bibliotheque.prets').insert({'livre' : livre, 'emprunteur' : emprunteur
 	, 'date_pret' : date_pret});
 
-	app.db.collection('bibliotheque.livres').update({'_id' : livre}, {$set : {'emprunt' : false}});
+	app.db.collection('bibliotheque.livres').update({'_id' : livre}, {$set : {'emprunt' : true}});
 
     res.redirect('/bibliotheque');
+});
+
+//Termine un prêt
+app.post('/bibliotheque/return/:id', function(req, res) {
+	var livre = new mongodb.ObjectId(req.params.id);
+
+	if(req.body.retourner) {
+	    app.db.collection('bibliotheque.livres').update({'_id' : livre}, {$set : {'emprunt' : false}});
+	}
+
+    res.redirect('/bibliotheque/' + livre);
 });
 
 // Connexion au serveur avec la méthode connect
