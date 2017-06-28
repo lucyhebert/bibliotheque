@@ -86,7 +86,7 @@ app.post('/bibliotheque/return/:id', function(req, res) {
 	    app.db.collection('bibliotheque.livres').update({'_id' : livre}, {$set : {'emprunt' : false}});
 	}
 
-    res.redirect('/bibliotheque/' + livre);
+    res.redirect('/bibliotheque');
 });
 
 // Connexion au serveur avec la méthode connect
