@@ -43,11 +43,11 @@ body
                 tr
                     td
                         form(method='POST', action="/bibliotheque/"+liste_livres[0]._id+"/edit")
-                            input(type="submit", name="emprunter", value="Emprunter")
+                            input(type="submit", name="emprunter", value="Emprunter" disabled=liste_livres[0].emprunt==true)
                 // TODO : display only if livre.emprunt = true
                 tr
                     td
                         form(method='POST', action="/bibliotheque/return/"+liste_livres[0]._id)
                             input(type="checkbox", name="retourner", value="Retourner")
                             |  Rendre ce livre
-                            input(type="submit" value="Valider")
+                            input(type="submit" value="Valider" disabled=liste_livres[0].emprunt==false)
