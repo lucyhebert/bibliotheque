@@ -7,6 +7,7 @@ head
     style
         include css/datepicker.css
         include css/normalize.css
+        include css/style.css
 
     script(src="https://code.jquery.com/jquery-1.12.4.js")
     script(src="https://code.jquery.com/ui/1.12.1/jquery-ui.js")
@@ -14,16 +15,23 @@ head
         include ../datepicker.js
 
 body
-
+    h2 Nouveau livre
     form(action='/bibliotheque/new', method='POST')
-        h1 Nouveau livre
-        input(type="text", name="isbn", placeholder="ISBN")
-        input(type="text", name="titre", placeholder="Titre")
-        input(type="text", name="auteurs", placeholder="Noms auteurs (séparés par des virgules, nom et prénom séparés par des espaces)")
-        input(type="text", name="date_achat", placeholder="Date d'achat", id="datepicker")
-        input(type="text", name="catégories", placeholder="Catégories (séparées par des virgules)")
-        br
-        input(type="submit", value="Ajouter")
+        table
+            tr
+                td
+                    input(type="text", name="isbn", placeholder="ISBN")
+                td
+                    input(type="text", name="titre", placeholder="Titre")
+                td
+                    input(type="text", name="auteurs", placeholder="Noms auteurs (séparés par des virgules, nom et prénom séparés par des espaces)")
+                td
+                    input(type="text", name="date_achat", placeholder="Date d'achat", id="datepicker")
+                td
+                    input(type="text", name="catégories", placeholder="Catégories (séparées par des virgules)")
+                td
+                    input(type="submit", value="Ajouter")
+
 
     h1 Liste des livres
 
@@ -46,8 +54,7 @@ body
                                 | #{auteur}
                                 |
                     td
-                        // TODO : format date
-                        input(type="text" value=livre.date_achat readonly)
+                        input(type="text" value=moment(livre.date_achat).format('DD/MM/YYYY') readonly)
                     td
                         textarea(readonly rows=livre.catégories.length)
                             each categorie in livre.catégories

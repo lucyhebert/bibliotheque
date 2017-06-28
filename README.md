@@ -22,11 +22,11 @@ Modélisation des données :
 'emprunteur', 'date_pret':  
 
 
-    db.bibliotheque.prets.insert({
-        "livre" : ObjectId("59528ae2291ab33b9bdd521f"), 
-        "emprunteur" : "Hebert Lucy", 
-        "date_pret" : new Date()
-    })
+    db.bibliotheque.prets.insert({  
+        "livre" : ObjectId("59528ae2291ab33b9bdd521f"),  
+        "emprunteur" : "Hebert Lucy",  
+        "date_pret" : new Date()  
+    })  
 
 
 

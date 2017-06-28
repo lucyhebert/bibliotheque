@@ -1,0 +1,15 @@
+textarea {
+    height: 40px;
+    width: 193px;
+    resize: none;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+input {
+    height: 40px;
+}
+
+input[type="submit"] {
+    height: 30px;
+}

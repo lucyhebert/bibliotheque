@@ -8,7 +8,7 @@ app.engine('html', cons.pug);
 app.set('view engine', 'html');
 app.set('views',  __dirname +  '/views')
 app.use(bodyParser())
-
+app.locals.moment = require('moment')
 // Récupération du client mongodb
 var mongoClient = require('mongodb').MongoClient;
 
@@ -31,7 +31,7 @@ app.post('/bibliotheque/new', function(req, res) {
 	var catégories = req.body.catégories.split(",");
 
 	app.db.collection('bibliotheque.livres').insert({'isbn' : isbn, 'titre' : titre
-	, 'auteurs' : auteurs, 'date_achat' : date_achat, 'catégories' : catégories});
+	, 'auteurs' : auteurs, 'date_achat' : new Date(date_achat), 'catégories' : catégories});
 
 	res.redirect('/bibliotheque');
 });
@@ -71,7 +71,7 @@ app.post('/bibliotheque/:id', function(req, res) {
 	var date_pret = req.body.date_pret;
 
 	app.db.collection('bibliotheque.prets').insert({'livre' : livre, 'emprunteur' : emprunteur
-	, 'date_pret' : date_pret});
+	, 'date_pret' : new Date(date_pret)});
 
 	app.db.collection('bibliotheque.livres').update({'_id' : livre}, {$set : {'emprunt' : true}});
 
